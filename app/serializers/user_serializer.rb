@@ -10,4 +10,8 @@ class UserSerializer
               :photo_url,
               :phone,
               :is_consumer
+
+  attribute :full_name do |record|
+    "#{record.first_name} #{record.last_name}"
+  end
 end
