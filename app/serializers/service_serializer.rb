@@ -6,6 +6,6 @@ class ServiceSerializer
   attributes  :name,
               :description
 
-  # has_many :categories
+  has_many :categories
   belongs_to :company
 end

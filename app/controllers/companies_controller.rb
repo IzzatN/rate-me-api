@@ -54,7 +54,7 @@ class CompaniesController < ApplicationController
       :logo_url,
       :address,
       :background_img_url,
-      :contact_phone
+      :contact_phone,
       :is_branch
     )
 
@@ -73,7 +73,7 @@ class CompaniesController < ApplicationController
       :logo_url,
       :address,
       :background_img_url,
-      :contact_phone
+      :contact_phone,
       :is_branch
     )
 

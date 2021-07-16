@@ -12,7 +12,6 @@ class CompanySerializer
               :contact_phone,
               :is_branch
 
-  has_many :membership_agreements, serializer: MembershipAgreementSerializer
   belongs_to :parent, record_type: :company
   # has_many :users
   has_many :branches, record_type: :company
