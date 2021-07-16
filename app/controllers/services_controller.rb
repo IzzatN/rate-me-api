@@ -7,6 +7,11 @@ class ServicesController < ApplicationController
       services = services.where(company_id: params[:company_id])
     end
 
+    if params[:category_id]
+      services = services.joins(:service_categories)
+        .where(service_categories: { category_id: params[:category_id] })
+    end
+
     render json: ServiceSerializer.new(services).serializable_hash
   end
 

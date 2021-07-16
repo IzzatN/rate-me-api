@@ -1,4 +1,4 @@
-class CategoriesSerializer
+class CategorySerializer
   include FastJsonapi::ObjectSerializer
 
   set_type :categories
