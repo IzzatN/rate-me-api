@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_16_094904) do
+ActiveRecord::Schema.define(version: 2021_08_17_135259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 2021_07_16_094904) do
     t.string "name", null: false
     t.string "value", null: false
     t.index ["value"], name: "index_categories_on_value", unique: true
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "text", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "service_id"
+    t.index ["service_id"], name: "index_comments_on_service_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -33,6 +43,7 @@ ActiveRecord::Schema.define(version: 2021_07_16_094904) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "parent_id"
+    t.string "email"
     t.index ["name"], name: "index_companies_on_name", unique: true
     t.index ["parent_id"], name: "index_companies_on_parent_id"
   end
@@ -61,7 +72,7 @@ ActiveRecord::Schema.define(version: 2021_07_16_094904) do
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "phone", null: false
-    t.string "photoUrl", null: false
+    t.string "photo_url", null: false
     t.boolean "is_consumer", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -10,6 +10,7 @@ class CompanySerializer
               :logo_url,
               :background_img_url,
               :contact_phone,
+              :email,
               :is_branch
 
   belongs_to :parent, record_type: :company

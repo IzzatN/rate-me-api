@@ -4,6 +4,8 @@ class User < ApplicationRecord
   auto_strip_attributes :first_name, :last_name, :email
   has_secure_password
 
+  has_many :comments, dependent: :destroy
+
   validates :email, presence: true, uniqueness: true
   validates :first_name, :last_name, presence: true
 
