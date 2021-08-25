@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_17_135259) do
+ActiveRecord::Schema.define(version: 2021_08_25_091626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "auth_sessions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "token", null: false
+    t.datetime "expires_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["expires_at"], name: "index_auth_sessions_on_expires_at"
+    t.index ["token", "expires_at"], name: "index_auth_sessions_on_token_and_expires_at"
+    t.index ["user_id", "expires_at"], name: "index_auth_sessions_on_user_id_and_expires_at"
+    t.index ["user_id"], name: "index_auth_sessions_on_user_id"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
@@ -76,6 +88,8 @@ ActiveRecord::Schema.define(version: 2021_08_17_135259) do
     t.boolean "is_consumer", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "password_digest"
+    t.boolean "is_registered", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["token"], name: "index_users_on_token", unique: true
     t.index ["uuid"], name: "index_users_on_uuid", unique: true

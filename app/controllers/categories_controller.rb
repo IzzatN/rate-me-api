@@ -1,4 +1,7 @@
 class CategoriesController < ApplicationController
+  skip_before_action :authenticate
+  # after_action :verify_authorized
+  # before_action :authenticate
 
   def index
     categories = Category.all

@@ -1,4 +1,5 @@
 class CompaniesController < ApplicationController
+  skip_before_action :authenticate
 
   def index
     companies = Company.all
