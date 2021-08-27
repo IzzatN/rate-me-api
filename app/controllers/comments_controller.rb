@@ -32,20 +32,20 @@ class CommentsController < ApplicationController
     end
   end
 
-  # def update
-  #   comment = Comment.find(params[:id])
+  def update
+    comment = Comment.find(params[:id])
 
-  #   unless current_user.id == comment.user.id
-  #     return send_forbidden
-  #   end
+    unless current_user.id == comment.user.id
+      return send_forbidden
+    end
 
-  #   if comment.update(create_params)
-  #     render json: CommentSerializer.new(comment).serializable_hash
-  #   else
-  #     data = { errors: [ status: 422, code: 'UnprocessableEntity', detail: comment.errors.messages ] }
-  #     render json: data, status: :unprocessable_entity
-  #   end
-  # end
+    if comment.update(create_params)
+      render json: CommentSerializer.new(comment).serializable_hash
+    else
+      data = { errors: [ status: 422, code: 'UnprocessableEntity', detail: comment.errors.messages ] }
+      render json: data, status: :unprocessable_entity
+    end
+  end
 
   # ishlavuradi
   def destroy
