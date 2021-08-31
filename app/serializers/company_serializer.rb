@@ -13,8 +13,8 @@ class CompanySerializer
               :email,
               :is_branch
 
+  belongs_to :user
   belongs_to :parent, record_type: :company
-  # has_many :users
   has_many :branches, record_type: :company
   has_many :services
 end

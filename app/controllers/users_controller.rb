@@ -54,7 +54,9 @@ class UsersController < ApplicationController
       :last_name,
       :phone,
       :photo_url,
-      :is_consumer
+      :is_consumer,
+      :password,
+      :is_registered
     )
 
     user
@@ -65,8 +67,14 @@ class UsersController < ApplicationController
       :first_name,
       :last_name,
       :phone,
-      :photo_url
+      :photo_url,
+      :password,
+      :is_registered
     )
+
+    if data = params.dig(:data, :relationships, :companies, :data)
+      user[:company_ids] = data.map{|d| d[:id]}
+    end
 
     user
   end

@@ -67,7 +67,7 @@ class ServicesController < ApplicationController
     end
 
     if data = params.dig(:data, :relationships, :categories, :data)
-      service[:categories_ids] = data.map{|d| d[:id]}
+      service[:category_ids] = data.map{|d| d[:id]}
     end
 
     service
@@ -80,7 +80,7 @@ class ServicesController < ApplicationController
     )
 
     if data = params.dig(:data, :relationships, :categories, :data)
-      service[:categories_ids] = data.map{|d| d[:id]}
+      service[:category_ids] = data.map{|d| d[:id]}
     end
 
     service

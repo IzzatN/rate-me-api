@@ -18,4 +18,6 @@ class UserSerializer
   has_one :auth_session, if: Proc.new { |record, params| params && params[:include_auth] == true }, record_type: :auth_session do |user|
     user.auth_sessions.last
   end
+
+  has_many :companies
 end

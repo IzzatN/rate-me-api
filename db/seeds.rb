@@ -1,15 +1,25 @@
-company = Company.create(
-  name: 'company 1',
-  short_name: 'test company',
-  description: 'dasda dasdasda ad',
-  logo_url: 'https://images.unsplash.com/photo-1472099645785-56…to=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  address: 'amir temur 48',
-  background_img_url: 'https://images.unsplash.com/photo-1472099645785-56…to=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  is_branch: false,
-  contact_phone: '132123123',
-  created_at: DateTime.now,
-  updated_at: DateTime.now,
-  parent_id: nil
+# Users ------------------------------
+
+yoshi = User.create(
+  first_name: 'Yoshi',
+  last_name: 'Dreams',
+  email:'dreams@autoritet.com',
+  phone: '1321313',
+  photo_url: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
+  password: 'password',
+  is_registered: true,
+  is_consumer: false
+)
+
+sarvar = User.create(
+  email: 'sarvar@potribitel.uz',
+  first_name: 'Sarvar',
+  last_name: 'Samatov',
+  phone: '8532234324',
+  photo_url: 'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  password: 'password',
+  is_registered: true,
+  is_consumer: true
 )
 
 # user1 = User.create(
@@ -23,42 +33,92 @@ company = Company.create(
 #   updated_at: DateTime.now
 # )
 
-# user2 = User.create(
-#   email: 'test@user2.com',
-#   first_name: 'test',
-#   last_name: 'user2',
-#   phone: '132131dsad3',
-#   photoUrl: nil,
-#   is_consumer: true,
-#   created_at: DateTime.now,
-#   updated_at: DateTime.now
-# )
+# Companies ------------------------------
 
-service1 = Service.create(
-  name: 'test 1',
-  description: 'dasda dasdasda ad',
-  created_at: DateTime.now,
-  updated_at: DateTime.now,
-  company_id: company.id
+autoritet = Company.create(
+  name: 'Autoritet',
+  short_name: 'Autoritet',
+  description: 'Set autoservisov Avtoritet',
+  logo_url: 'https://images.unsplash.com/photo-1472099645785-56…to=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  address: 'amir temur 48',
+  background_img_url: 'https://images.unsplash.com/photo-1472099645785-56…to=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  is_branch: false,
+  contact_phone: '132123123',
+  parent_id: nil,
+  email: 'galavnoy@autoritet.com',
+  user: yoshi
 )
 
-service2 = Service.create(
-  name: 'test 2',
-  description: 'dasda dasdasda ad',
-  created_at: DateTime.now,
-  updated_at: DateTime.now,
-  company_id: company.id
+# Services ------------------------------
+
+vulkanizatsiya1 = Service.create(
+  name: 'Vulkanizatsiya xizamtlari',
+  description: 'Balon yamash, ...',
+  company_id: autoritet.id
 )
 
-category1 = Category.create(
-  name: 'test 1',
-  value: 'test_1'
+remont_kuzova = Service.create(
+  name: 'Kuzovnoy remont',
+  description: 'Remont lyubix chastey kuzova',
+  company_id: autoritet.id
 )
 
-category2 = Category.create(
-  name: 'test 2',
-  value: 'test_2'
+adinol = Service.create(
+  name: 'Moy almashtirish (Adinol)',
+  description: 'Adinol firmasining moy almashtirish xizmati',
+  company_id: autoritet.id
 )
 
-service1.categories << category1
-service2.categories << category2
+total = Service.create(
+  name: 'Moy almashtirish (Total)',
+  description: 'Total firmasining moy almashtirish xizmati',
+  company_id: autoritet.id
+)
+
+t_koreyskiy = Service.create(
+  name: 'Krugovaya tonirokva',
+  description: 'Tonirokva xizmati',
+  company_id: autoritet.id
+)
+
+t_mestniy = Service.create(
+  name: 'Tonirovka Sobiraka',
+  description: 'Tonirokva xizmati',
+  company_id: autoritet.id
+)
+
+# Categories ------------------------------
+
+shinomontaj = Category.create(
+  name: 'Shinomontaj',
+  value: 'shinomontaj'
+)
+
+moy_almashtirish = Category.create(
+  name: 'Moy almashtirish',
+  value: 'moy_almashtirish'
+)
+
+evakuator = Category.create(
+  name: 'Evakuator',
+  value: 'evakuator'
+)
+
+kostoprav = Category.create(
+  name: 'Kostoprav',
+  value: 'kostoprav'
+)
+
+tonirovka = Category.create(
+  name: 'Tonirovka',
+  value: 'tonirovka'
+)
+
+# Categories/Services ------------------------------
+
+vulkanizatsiya1.categories << shinomontaj
+remont_kuzova.categories << kostoprav
+adinol.categories << moy_almashtirish
+total.categories << moy_almashtirish
+t_koreyskiy.categories << tonirovka
+t_mestniy.categories << tonirovka

@@ -78,6 +78,10 @@ class CompaniesController < ApplicationController
       :is_branch
     )
 
+    if data = params.dig(:data, :relationships, :user, :data)
+      service[:user_id] = data[:id]
+    end
+
     if data = params.dig(:data, :relationships, :parent, :data)
       company[:parent_id] = data[:id]
     end
