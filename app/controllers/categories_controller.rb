@@ -6,6 +6,10 @@ class CategoriesController < ApplicationController
   def index
     categories = Category.all
 
+    if params[:limit]
+      categories = categories.limit(params[:limit])
+    end
+
     render json: CategorySerializer.new(categories).serializable_hash
   end
 
