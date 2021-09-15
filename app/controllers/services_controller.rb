@@ -13,6 +13,16 @@ class ServicesController < ApplicationController
         .where(service_categories: { category_id: params[:category_id] })
     end
 
+    if params[:query]
+      if params[:query] == 'recent'
+        services = services.order('updated_at ASC')
+      elsif params[:query] == 'popular'
+
+      elsif params[:query] == 'top-ranked'
+
+      end
+    end
+
     render json: ServiceSerializer.new(services).serializable_hash
   end
 
