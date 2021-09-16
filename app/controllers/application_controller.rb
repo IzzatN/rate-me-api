@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   prepend_before_action :load_current_user
   prepend_before_action :authenticate
 
+  include Pagy::Backend
+
   protected
 
   def current_user

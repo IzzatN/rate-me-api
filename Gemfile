@@ -29,6 +29,8 @@ gem 'fast_jsonapi'
 
 gem "auto_strip_attributes", "~> 2.6"
 
+gem 'pagy', '~> 3'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

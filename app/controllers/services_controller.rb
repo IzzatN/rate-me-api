@@ -1,7 +1,11 @@
 class ServicesController < ApplicationController
   skip_before_action :authenticate
+  after_action { pagy_headers_merge(@pagy) if @pagy }
 
   def index
+    meta = {}
+    items = params[:limit] || 20
+
     services = Service.all
 
     if params[:company_id]
@@ -23,7 +27,13 @@ class ServicesController < ApplicationController
       end
     end
 
-    render json: ServiceSerializer.new(services).serializable_hash
+    # Pagination
+    if params[:page].present?
+      @pagy, services = pagy(services, items: items)
+      meta.merge!(pagy_metadata(@pagy))
+    end
+
+    render json: ServiceSerializer.new(services, meta: meta).serializable_hash
   end
 
   def show
