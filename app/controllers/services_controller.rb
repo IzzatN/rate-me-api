@@ -4,7 +4,7 @@ class ServicesController < ApplicationController
 
   def index
     meta = {}
-    items = params[:limit] || 20
+    items = params[:per_page] || 20
 
     services = Service.all
 
@@ -19,12 +19,26 @@ class ServicesController < ApplicationController
 
     if params[:query]
       if params[:query] == 'recent'
-        services = services.order('updated_at ASC')
+        services = services.order('updated_at DESC')
       elsif params[:query] == 'popular'
 
       elsif params[:query] == 'top-ranked'
+        # services = services
+        #   .joins(:ratings)
+        #   .where.not(ratings: { id: nil })
+        #   .group(:id)
+        #   .order('average(ratings.value) DESC')
 
+        services = services
+          .joins(:ratings)
+          .select('services.*, AVG(ratings.value) AS average_ratings')
+          .group(:id)
+          .order('average_ratings DESC')
       end
+    end
+
+    if params[:limit]
+      services = services.limit(params[:limit])
     end
 
     # Pagination

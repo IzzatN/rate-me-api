@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :companies, dependent: :destroy
   has_many :auth_sessions, dependent: :destroy
+  has_many :ranks, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
   validates :first_name, :last_name, presence: true

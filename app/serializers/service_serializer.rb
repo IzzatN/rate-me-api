@@ -11,4 +11,8 @@ class ServiceSerializer
   has_many :comments
 
   belongs_to :company
+
+  attribute :rank do |record|
+    record.rank
+  end
 end
