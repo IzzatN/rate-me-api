@@ -23,12 +23,6 @@ class ServicesController < ApplicationController
       elsif params[:query] == 'popular'
 
       elsif params[:query] == 'top-ranked'
-        # services = services
-        #   .joins(:ratings)
-        #   .where.not(ratings: { id: nil })
-        #   .group(:id)
-        #   .order('average(ratings.value) DESC')
-
         services = services
           .joins(:ratings)
           .select('services.*, AVG(ratings.value) AS average_ratings')
